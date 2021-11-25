@@ -1,0 +1,100 @@
+<app-listado-generico [listado] = "peliculas">
+	<!-- <ng-container vacio>
+		<div>Mensaje personalizado para contenido <b>vacio</b></div>
+	</ng-container> -->
+
+	<!-- <ng-container cargando>
+		<img src="https://www.petinsurancequotes.com/quote/resources/dist/images/piq-loading.gif" alt="">
+	</ng-container> -->
+
+	<ng-container contenido>
+		<div class="peliculas-contenedor">
+				<div
+					*ngFor="let pelicula of peliculas; let index = index"
+					class="pelicula-contenedor">					
+				    
+					<a [routerLink]="'/pelicula/'+ pelicula.id">
+						<img [src]="pelicula.poster" alt="Poster">
+					</a>
+					<p>
+						<a [routerLink]="'/pelicula/'+ pelicula.id">{{pelicula.titulo}}</a>
+					</p>
+					<app-autorizado [rol]="'admin'">
+						<ng-container autorizado>
+							<div>
+								<a 
+									mat-flat-button color="primary"
+									[routerLink]="'/peliculas/editar/'+ pelicula.id">
+									Editar
+								</a>
+								<button
+									mat-flat-button
+									color="warn"
+									type="button"
+									[swal] ="{title: 'Confirmación',
+									text: '¿Estás seguro que desea borrar el registro?',
+									showCancelButton: true}"
+									(confirm)="borrar(pelicula.id)">
+									Borrar
+								</button>
+					        </div>
+						</ng-container>					
+					</app-autorizado>				
+				</div>
+		</div>
+	
+	</ng-container>
+</app-listado-generico>
+
+
+<!-- ng-container, para que no se creen muchas etiquetas en el DOM -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Si películas no está definida -->
+<!-- <div *ngIf="!peliculas">
+  <img
+    src="https://img.pikbest.com/58pic/35/39/61/62K58PICb88i68HEwVnm5_PIC2018.gif!w340"
+    alt="loading"
+  />
+</div> -->
+
+<!-- El operador '?' nos permite no tener un error si peliculas no esta definido-->
+
+<!-- <div *ngIf="peliculas?.length === 0">
+  <p>No hay películas para mostrar.</p>
+</div>
+
+<ng-container *ngIf="peliculas && peliculas.length > 0">
+  <div
+    *ngFor="let pelicula of peliculas; let index = index"
+    class="pelicula-contenedor"
+  > -->
+
+  <!-- Utilizar un binding event, se utilizan usando parentesis
+y es para llamar funciones o interacciones con el usuario. -->
+  
+
+<!-- <div>Película {{ index + 1 }}: {{ pelicula.titulo | uppercase }}
+		<button style="margin-left: 1rem;" (click) ="remover(index)"> Remover</button>
+	</div>
+    <div>
+      {{ pelicula.fechaLanzamiento | date: "dd-MMMM-yyyy" | uppercase }}
+    </div>
+    <div>{{ pelicula.precio | currency }}</div>
+  </div>
+</ng-container> -->
+
+<!-- ng-container, para que no se creen muchas etiquetas en el DOM -->

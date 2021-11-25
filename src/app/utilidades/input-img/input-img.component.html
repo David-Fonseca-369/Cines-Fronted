@@ -1,0 +1,21 @@
+<div>
+	<button type="button" mat-raised-button (click)="fileInput.click()">
+		Seleccionar Imagen
+	</button>
+	<!-- Este input esta oculta pero se puede interactuar con el button -->
+	<input type="file"
+	hidden
+	#fileInput
+	(change)="change($event)">
+	<!-- change, para que pasae el evento que contiene el archivo seleccionado -->
+</div>
+
+<div>
+	<div *ngIf="imagenBase64">
+		<img [src]="imagenBase64">
+	</div>
+	<!--La imagen actual al editar  -->
+	<div *ngIf="urlImagenActual">
+		<img [src]="urlImagenActual"alt=""/>
+	</div>
+</div>

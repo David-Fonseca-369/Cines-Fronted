@@ -1,0 +1,17 @@
+mat-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  /* Para que no tenga problemas y se mantenga encima de
+	otros elementos */
+  z-index: 1000;
+}
+
+app-autorizado {
+  /* Para que no muestre los objetos del menú en listado */
+  display: flex;
+}
+
+.espacio {
+  flex: 1 1 auto;
+}

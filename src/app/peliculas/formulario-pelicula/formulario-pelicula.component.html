@@ -1,0 +1,74 @@
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Título</mat-label>
+    <input formControlName="titulo" matInput />
+    <mat-error>El campo título es requerido.</mat-error>
+  </mat-form-field>
+
+  <div class="contenedor-checkbox">
+    <mat-checkbox formControlName="enCines">En Cines</mat-checkbox>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Trailer</mat-label>
+    <input formControlName="trailer" matInput />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha de lanzamiento</mat-label>
+    <input
+      formControlName="fechaLanzamiento"
+      matInput
+      [matDatepicker]="picker"
+    />
+    <!-- el 'picker se enlaza con el de aquí debajo' -->
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+    <!-- utiilizamos una variable de referencia de plantilla -->
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <h4>Seleccionar Poster</h4>
+
+  <app-input-img
+    [urlImagenActual]="modelo?.poster"
+    (archivoSeleccionado)="archivoSeleccionado($event)"
+  ></app-input-img>
+
+  <h4>Resumen de la Película</h4>
+
+  <!--modelo?.resumen es en caso de que tenga contenido lo ponga  -->
+  <app-input-markdown
+    [contenidoMarkdown]="modelo?.resumen"
+    [placeHolderTextarea]="'Resumen'"
+    (changeMarkdown)="changeMarkdown($event)"
+  ></app-input-markdown>
+
+  <h4>Seleccione los géneros</h4>
+
+  <app-selector-multiple
+    [Seleccionados]="generosSeleccionados"
+    [NoSeleccionados]="generosNoSeleccionados"
+  ></app-selector-multiple>
+
+  <h4>Seleccione los cines</h4>
+
+  <app-selector-multiple
+    [Seleccionados]="cinesSeleccionados"
+    [NoSeleccionados]="cinesNoSeleccionados"
+  ></app-selector-multiple>
+
+  <h4>Seleccione actores</h4>
+  <app-autocomplete-actores
+    [actoresSeleccionados]="actoresSeleccionados"
+  ></app-autocomplete-actores>
+
+  <div>
+    <button mat-flat-button color="primary" [disabled]="form.invalid">
+      Guardar Cambios
+    </button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
+</form>

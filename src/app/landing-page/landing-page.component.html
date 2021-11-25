@@ -1,0 +1,14 @@
+<h2>En Cines</h2>
+
+    <!-- Para utilizar el input
+    Se ingresa el nombre del parametro -->
+    <app-listado-peliculas 
+    (borrado)="borrado()"
+    [peliculas]= "peliculasEnCines"></app-listado-peliculas>
+    <!-- El corechete '[]' se llama binding attribute y se utiliza para pasar expresiones de
+    javascript a los componentes, por eso se le pasa una variable-->
+    <h2>Futuros Estrenos</h2>
+    <app-listado-peliculas 
+    (borrado)="borrado()"
+    [peliculas] = "peliculasProximosEstrenos">
+    </app-listado-peliculas>

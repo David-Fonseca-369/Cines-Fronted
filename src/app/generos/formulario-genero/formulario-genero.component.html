@@ -1,0 +1,26 @@
+<!-- Le paso el listado de errores a este componenete -->
+<app-mostrar-errores [errores]="errores"></app-mostrar-errores>
+
+<!-- Asosiar el formulario con el form group que se tiene en la clase -->
+<form (submit) ="guardarCambios()" [formGroup]= "form">
+
+<mat-form-field appearance="outline">
+	<mat-label>Nombre*</mat-label>
+	<input formControlName="nombre" matInput>
+	<mat-error *ngIf="form.invalid">{{obtenerErrorCampoNombre()}}</mat-error>
+</mat-form-field>	
+<div>
+	
+	<!-- No se lanza con click, por que ya esta en submit, lo que significa que con un enter incluso el usuaario puede 
+	enviar la infromación -->
+
+	<!-- Si el formulario es invalido el boton se deshabilita -->
+	<button mat-flat-button color="primary" [disabled] ="form.invalid">
+		Guardar Cambios
+	</button>
+	<a mat-stroked-button routerLink="/generos">
+		Cancelar 
+	</a>
+</div>
+
+</form>
